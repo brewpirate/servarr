@@ -1,0 +1,18 @@
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett_split
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - AUTO_UPDATE=${AUTO_UPDATE}
+    volumes:
+      - ./config:/config
+      - ${QBITTORRENT_DOWNLOADS_VOLUME}:/downloads
+    depends_on:
+        gluetun:
+          condition: service_healthy
+          restart: true
+    restart: unless-stopped

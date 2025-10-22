@@ -1,0 +1,63 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Media:
+    - Jellyfin:
+        icon: jellyfin.png
+        href: http://localhost:8096
+        # description: Homepage is awesome
+    - Jellyseerr:
+        icon: jellyseerr.png
+        href: http://localhost:5055
+        # description: Homepage is awesome
+
+    - Bazarr:
+        icon: bazarr.png
+        href: http://localhost:6767
+        # description: Homepage is awesome
+    
+    - Lidarr:
+        icon: lidarr.png
+        href: http://localhost:8686
+        description: music collection manager for Usenet and BitTorrent users. 
+
+    - Overseerr:
+        icon: overseerr.png
+        href: http://localhost:5055
+        # description: 
+    - Prowlarr:
+        icon: prowlarr.png
+        href: http://localhost:9696
+        # description: 
+    - Radarr:
+        icon: radarr.png
+        href: http://localhost:7878
+        # description:         
+    - Sonarr:
+        icon: sonarr.png
+        href: http://localhost:8989
+        # description:         
+
+
+- Utils:
+    - qbittorrent:
+        icon: qbittorrent.png
+        href: http://localhost:8085
+        description: an open-source software alternative to µTorrent.
+
+    - Jackett:
+        icon: jackett.png
+        href: http://localhost:9117
+        description: API Support for your favorite torrent trackers
+
+    - SABnzbd:
+        icon: sabnzbd.png
+        href: http://localhost:8080
+        description: The free and easy binary newsreader
+
+
+# - My Third Group:
+#     - My Third Service:
+#         href: http://localhost/
+#         description: Homepage is 😎

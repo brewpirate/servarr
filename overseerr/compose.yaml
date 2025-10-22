@@ -1,0 +1,16 @@
+services:
+  overseerr:
+    image: lscr.io/linuxserver/overseerr:latest
+    container_name: overseerr_split
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./config:/config
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
+    restart: unless-stopped

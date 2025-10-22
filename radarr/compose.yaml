@@ -1,0 +1,17 @@
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr_split
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./config:/config
+      - ${DATA_PATH}/downloads/movies:/data
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
+    restart: unless-stopped

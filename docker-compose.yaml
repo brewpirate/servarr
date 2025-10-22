@@ -1,0 +1,18 @@
+include:
+  - gluetun/compose.yaml
+  - qbittorrent/compose.yaml  
+  - homepage/compose.yaml
+  - jackett/compose.yaml
+  - sabnzbd/compose.yaml
+
+  - bazarr/compose.yaml
+  - jellyfin/compose.yaml
+  - jellyseerr/compose.yaml
+  - lidarr/compose.yaml
+  - overseerr/compose.yaml
+  - prowlarr/compose.yaml
+  - radarr/compose.yaml
+  - sonarr/compose.yaml
+
+
+name: servarr-split

@@ -1,0 +1,29 @@
+services:
+  # jellyfin:
+  #   group_add:
+  #     - '109'  # This needs to be the group id of running `stat -c '%g' /dev/dri/renderD128` on the docker host
+  #   devices: # uncomment these and amend if you require GPU accelerated transcoding
+  #     - /dev/dri/renderD128:/dev/dri/renderD128
+  #     - /dev/dri/card0:/dev/dri/card0
+  
+  gluetun:
+    extends:
+      file: gluetun/proton.compose.yaml
+      service: gluetun
+    ports: 
+      - 3000:3000 # homepage
+      - 8085:8085 # qbittorrent
+      - 9117:9117 # Jackett
+      # - 8191:8191 # FlareSolvarr
+      - 5055:5055 # Overseerr
+      - 5055:5055 # jellyseerr
+      - 6767:6767 # Bazarr
+      - 7878:7878 # Radarr
+      - 8080:8080 # sabnzbd
+      - 9090:9090 # sabnzbd
+      - 8096:8096 # jellyfin
+      - 1900:1900/udp # jellyfin Client Discovery
+      - 7359:7359/udp # jellyfin Service Discovery
+      - 8686:8686 # lidarr
+      - 8989:8989 # Sonarr
+      - 9696:9696 # Prowlarr

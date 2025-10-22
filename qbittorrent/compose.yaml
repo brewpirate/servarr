@@ -1,0 +1,26 @@
+  services:
+    qbittorrent:
+      image: lscr.io/linuxserver/qbittorrent:latest
+      container_name: qbittorrent_split
+      network_mode: "service:gluetun"
+      environment:
+        - PUID=${PUID}
+        - PGID=${PGID}
+        - TZ=${TZ}
+        - WEBUI_PORT=8085
+        - UMASK=022
+      # env_file:
+      # - ./.env
+      healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+        test: "curl -sf https://1.1.1.1/  || exit 1"
+        interval: 1m
+        timeout: 10s
+        retries: 1
+      volumes:
+        - ./config:/config
+        - ${QBITTORRENT_DOWNLOADS_VOLUME}:/data/torrents
+      depends_on:
+        gluetun:
+          condition: service_healthy
+          restart: true
+      restart: always

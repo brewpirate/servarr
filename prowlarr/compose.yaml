@@ -1,0 +1,16 @@
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr_split
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./config:/config
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
+    restart: unless-stopped

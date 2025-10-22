@@ -1,0 +1,17 @@
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr_split
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./config:/config
+      - ${BAZARR_MEDIA}:/data/media
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
+    restart: unless-stopped

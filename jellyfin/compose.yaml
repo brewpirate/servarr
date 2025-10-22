@@ -1,0 +1,24 @@
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin_split
+    network_mode: "service:gluetun"
+
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./config:/config
+      - ./.cache:/cache
+      - ${JELLYFIN_MOVIES_VOLUME}/Films:/Films
+      - ${JELLYFIN_TV_VOLUME}:/TVShows
+    # ports: #You will need to uncomment if you aren't running through a proxy
+    #  - 8096:8096
+    #  - 8920:8920 #optional
+    #  - 7359:7359/udp #optional
+    #  - 1900:1900/udp #optional
+    #devices: uncomment these and amend if you require GPU accelerated transcoding
+    #  - /dev/dri/renderD128:/dev/dri/renderD128
+    #  - /dev/dri/card0:/dev/dri/card0
+    restart: unless-stopped

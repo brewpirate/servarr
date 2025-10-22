@@ -1,0 +1,19 @@
+services:
+  sabnzbd:
+    image: linuxserver/sabnzbd:latest
+    container_name: sabnzbd_split
+    network_mode: service:gluetun
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./config:/config
+      - ${DATA_PATH}/sabnzbd/downloads:/downloads
+    depends_on:
+      gluetun:
+        condition: service_healthy
+        restart: true
+    restart: unless-stopped
+
+  
