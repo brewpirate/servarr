@@ -7,40 +7,10 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun
     ports:
-      # - 3000:3000
       - 6881:6881
       - 6881:6881/udp
       # - 8888:8888/tcp # HTTP proxy
       # - 8388:8388/tcp # Shadowsocks
       # - 8388:8388/udp # Shadowsocks
-
-      # - 8191:8191 # FlareSolvarr
-      # - 1900:1900/udp # jellyfin Client Discovery
-      # - 3000:3000 # homepage
-      # - 5055:5055 # Overseerr
-      # - 5055:5055 # jellyseerr
-      # - 6767:6767 # Bazarr
-
-      # - 7359:7359/udp # jellyfin Service Discovery
-      # - 7575:7575 # homarr
-      # - 7878:7878 # Radarr
-      # - 8080:8080 # sabnzbd
-      # - 8085:8085 # qbittorrent
-      # - 8096:8096 # jellyfin
-      # - 8443:8443 # ytdl-sub 
-      # - 8686:8686 # lidarr
-      # - 8989:8989 # Sonarr
-      # - 9090:9090 # sabnzbd
-      # - 9117:9117 # Jackett
-      # - 9696:9696 # Prowlarr
     volumes:
       - ./data:/gluetun
-    # environment:
-    #   - VPN_SERVICE_PROVIDER=${VPN_SERVICE_PROVIDER}
-    #   - VPN_TYPE=${VPN_TYPE}
-    #   - WIREGUARD_PRIVATE_KEY=${WIREGUARD_PRIVATE_KEY}
-    #   - WIREGUARD_ADDRESSES=${WIREGUARD_ADDRESSES}
-    #   - TZ=${TZ}
-    #   - UPDATER_PERIOD=${UPDATER_PERIOD}
-    #   - SERVER_COUNTRIES=${SERVER_REGIONS}
-

@@ -9,7 +9,7 @@ services:
       - TZ=${TZ}
     volumes:
       - ./config:/config
-      - ${DATA_PATH}/downloads/tv:/data
+      - ${SONARR_TV_VOLUME}:/data
     depends_on:
       gluetun:
         condition: service_healthy

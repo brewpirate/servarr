@@ -2,43 +2,53 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/services/
 
-- Media:
-    - Jellyfin:
-        icon: jellyfin.png
-        href: http://localhost:8096
-        # description: Homepage is awesome
-    - Jellyseerr:
-        icon: jellyseerr.png
-        href: http://localhost:5055
-        # description: Homepage is awesome
+- Arr:
+    - Prowlarr:
+        icon: prowlarr.png
+        href: http://localhost:9696
+        description: The Ultimate Indexer Manager.
+
+    - Radarr:
+        icon: radarr.png
+        href: http://localhost:7878
+        description: See all your upcoming movies in one convenient location. 
+
+    - Sonarr:
+        icon: sonarr.png
+        href: http://localhost:8989
+        description: Internet PVR for Usenet and Torrents. 
+
+    - Lidarr:
+        icon: lidarr.png
+        href: http://localhost:8686
+        description: Music collection manager for Usenet and BitTorrent users. 
 
     - Bazarr:
         icon: bazarr.png
         href: http://localhost:6767
-        # description: Homepage is awesome
+        description: companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements.
     
-    - Lidarr:
-        icon: lidarr.png
-        href: http://localhost:8686
-        description: music collection manager for Usenet and BitTorrent users. 
 
-    - Overseerr:
-        icon: overseerr.png
+- Media:
+    - Jellyfin:
+        icon: jellyfin.png
+        href: http://localhost:8096
+        description: Media solution that puts you in control of your media. Stream to any device from your own server, with no strings attached.
+    
+    - Jellyseerr:
+        icon: jellyseerr.png
         href: http://localhost:5055
-        # description: 
-    - Prowlarr:
-        icon: prowlarr.png
-        href: http://localhost:9696
-        # description: 
-    - Radarr:
-        icon: radarr.png
-        href: http://localhost:7878
-        # description:         
-    - Sonarr:
-        icon: sonarr.png
-        href: http://localhost:8989
-        # description:         
+        description: Manage requests for your media library
 
+    - Kavita:
+        icon: kavita.png
+        href: http://localhost:5000
+        description: Reading Server
+
+    - Pinchflat:
+        icon: pinchflat.png
+        href: http://localhost:8945
+        description: Your next YouTube media manager
 
 - Utils:
     - qbittorrent:
@@ -55,9 +65,3 @@
         icon: sabnzbd.png
         href: http://localhost:8080
         description: The free and easy binary newsreader
-
-
-# - My Third Group:
-#     - My Third Service:
-#         href: http://localhost/
-#         description: Homepage is 😎
