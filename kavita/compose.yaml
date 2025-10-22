@@ -1,0 +1,15 @@
+services:
+  kavita:
+    image: linuxserver/kavita:latest 
+    container_name: kavita_split
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - ./config:/kavita/config 
+      - ${KAVITA_EBOOKS}:/books 
+      - ${KAVITA_MANGA}:/manga
+      - ${KAVITA_COMICS}:/comics
+    restart: unless-stopped

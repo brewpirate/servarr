@@ -9,7 +9,7 @@ services:
       - TZ=${TZ}
     volumes:
       - ./config:/config
-      - ${DATA_PATH}/sabnzbd/downloads:/downloads
+      - ${SABNZBD_DOWNLOADS}:/downloads
     depends_on:
       gluetun:
         condition: service_healthy

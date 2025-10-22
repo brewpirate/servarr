@@ -1,16 +1,17 @@
 services:
-  lidarr:
-    image: lscr.io/linuxserver/lidarr:latest
-    container_name: lidarr_split
+  pinchflat:
+    image: ghcr.io/kieraneglin/pinchflat:latest
+    container_name: pinchflat_split
     network_mode: "service:gluetun"
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
       - TZ=${TZ}
+      - BASIC_AUTH_USERNAME=${PINCHFLAT_AUTH_USER}
+      - BASIC_AUTH_PASSWORD${PINCHFLAT_AUTH_PASS}
     volumes:
       - ./config:/config
-      - ${LIDARR_MUSIC}:/music
-      - ${LIDARR_DOWNLOADS}:/downloads
+      - ${PINCHFLAT_DOWNLOADS}:/downloads
     depends_on:
       gluetun:
         condition: service_healthy

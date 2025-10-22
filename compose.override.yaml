@@ -15,7 +15,7 @@ services:
       - 8085:8085 # qbittorrent
       - 9117:9117 # Jackett
       # - 8191:8191 # FlareSolvarr
-      - 5055:5055 # Overseerr
+      # - 5055:5055 # Overseerr
       - 5055:5055 # jellyseerr
       - 6767:6767 # Bazarr
       - 7878:7878 # Radarr
@@ -27,3 +27,5 @@ services:
       - 8686:8686 # lidarr
       - 8989:8989 # Sonarr
       - 9696:9696 # Prowlarr
+      - 5000:5000 # Kavita
+      - 8945:8945 # Pinchflat

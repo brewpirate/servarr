@@ -1,4 +1,4 @@
-
+.env
 
 # TODO: Update paths
 gluetun/data/**
@@ -33,9 +33,12 @@ jellyfin/config/**
 
 lidarr/config/**
 
+kavita/config/**
+
+pinchflat/config/**
+
 
 # Allow .gitignore
 !**/.gitkeep
 !.gitkeep
 
-# !jackett/config/.gitkeep
