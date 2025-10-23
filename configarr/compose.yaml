@@ -1,0 +1,17 @@
+services:
+  configarr:
+    image: ghcr.io/raydak-labs/configarr:latest
+    container_name: configarr
+    network_mode: "service:gluetun"
+    #user: 1000:1000 # Optional, defaults to root:root
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - LOG_STACKTRACE=true
+    volumes:
+      - ./config:/app/config # Contains the config.yml and secrets.yml
+      - ./dockerrepos:/app/repos # Cache repositories
+      - ./custom/cfs:/app/cfs # Optional if custom formats locally provided
+      - ./custom/templates:/app/templates # Optional if custom templates
+    restart: unless-stopped
