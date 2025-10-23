@@ -221,4 +221,4 @@ readarr: {}
 lidarr: 
   instance1: # Instance name (can be any unique identifier)
     base_url:  http://localhost:8686 # Sonarr instance URL
-    api_key: !secret LIDARR_API_KEY # Reference to API key in secrets.yml
+    api_key: !env LIDARR_API_KEY # Reference to API key in secrets.yml

@@ -8,4 +8,4 @@ The goal of this project is to avoid having one large `docker-compose.yaml` file
 
 ## Start
 
-`docker compose --env-file [your .env]`
+`docker compose --env-file [your .env] up -d`

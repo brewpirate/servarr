@@ -9,6 +9,9 @@ services:
       - PGID=${PGID}
       - TZ=${TZ}
       - LOG_STACKTRACE=true
+      - RADARR_API_KEY=${RADARR_API_KEY}
+      - SONARR_API_KEY=${SONARR_API_KEY}
+      - LIDARR_API_KEY=${LIDARR_API_KEY}
     volumes:
       - ./config:/app/config # Contains the config.yml and secrets.yml
       - ./dockerrepos:/app/repos # Cache repositories
