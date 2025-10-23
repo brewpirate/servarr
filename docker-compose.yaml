@@ -13,5 +13,6 @@ include:
   - sonarr/compose.yaml
   - kavita/compose.yaml
   - pinchflat/compose.yaml
-
+  - configarr/compose.yaml
+  
 name: servarr-split
