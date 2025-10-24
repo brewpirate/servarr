@@ -1,15 +1,14 @@
 services:
   radarr:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr_split
-    network_mode: "service:gluetun"
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
     volumes:
       - ./config:/config
-      - ${RADARR_MOVIES_VOLUME}:/data
+      - ${MEDIA_MOVIES_PATH}:/data
+      - ${LOGS_BASE_PATH}/radarr:/config/logs
     depends_on:
       gluetun:
         condition: service_healthy

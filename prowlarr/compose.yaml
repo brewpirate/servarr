@@ -1,14 +1,13 @@
 services:
   prowlarr:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
     image: lscr.io/linuxserver/prowlarr:latest
     container_name: prowlarr_split
-    network_mode: "service:gluetun"
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
     volumes:
       - ./config:/config
+      - ${LOGS_BASE_PATH}/prowlarr:/config/logs
     depends_on:
       gluetun:
         condition: service_healthy

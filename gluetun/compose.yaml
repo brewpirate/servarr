@@ -2,6 +2,8 @@ services:
   gluetun:
     image: qmcgaw/gluetun:latest
     container_name: gluetun_split
+    env_file:
+      - ../.env.global
     cap_add:
       - NET_ADMIN
     devices:
@@ -9,8 +11,14 @@ services:
     ports:
       - 6881:6881
       - 6881:6881/udp
-      # - 8888:8888/tcp # HTTP proxy
-      # - 8388:8388/tcp # Shadowsocks
-      # - 8388:8388/udp # Shadowsocks
+      - 8888:8888/tcp # HTTP proxy
+      - 8388:8388/tcp # Shadowsocks
+      - 8388:8388/udp # Shadowsocks
     volumes:
       - ./data:/gluetun
+    healthcheck:
+      test: ping -c 1 www.google.com || exit 1
+      interval: 20s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped

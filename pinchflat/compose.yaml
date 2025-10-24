@@ -1,17 +1,17 @@
 services:
   pinchflat:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
     image: ghcr.io/kieraneglin/pinchflat:latest
     container_name: pinchflat_split
-    network_mode: "service:gluetun"
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
       - BASIC_AUTH_USERNAME=${PINCHFLAT_AUTH_USER}
       - BASIC_AUTH_PASSWORD${PINCHFLAT_AUTH_PASS}
     volumes:
       - ./config:/config
-      - ${PINCHFLAT_DOWNLOADS}:/downloads
+      - ${DOWNLOAD_YOUTUBE_PATH}:/downloads
+      - ${LOGS_BASE_PATH}/pinchflat:/config/logs
     depends_on:
       gluetun:
         condition: service_healthy

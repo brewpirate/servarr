@@ -1,17 +1,15 @@
 services:
   homepage:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage_split
-    network_mode: service:gluetun
+    user: root 
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
+      - HOMEPAGE_ALLOWED_HOSTS=*
     volumes:
       - ./config:/app/config
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    depends_on:
-      gluetun:
-        condition: service_healthy
-        restart: true
+      - /var/run/docker.sock:/var/run/docker.sock     # (optional) For docker integrations
+      - ${LOGS_BASE_PATH}/homepage:/app/config/logs
     restart: unless-stopped

@@ -1,16 +1,15 @@
 services:
   lidarr:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
     image: lscr.io/linuxserver/lidarr:latest
     container_name: lidarr_split
-    network_mode: "service:gluetun"
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
     volumes:
       - ./config:/config
-      - ${LIDARR_MUSIC}:/music
-      - ${LIDARR_DOWNLOADS}:/downloads
+      - ${LOGS_BASE_PATH}/lidarr:/config/logs
+      - ${MEDIA_MUSIC_PATH}:/music
+      - ${DOWNLOAD_MUSIC_PATH}:/downloads
     depends_on:
       gluetun:
         condition: service_healthy

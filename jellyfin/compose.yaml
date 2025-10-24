@@ -1,15 +1,34 @@
 services:
   jellyfin:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
     image: jellyfin/jellyfin:latest
     container_name: jellyfin_split
-    network_mode: "service:gluetun"
+    # user: root
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
+      - NVIDIA_VISIBLE_DEVICES=all 
+    #   - JELLYFIN_PublishedServerUrl=
     volumes:
       - ./config:/config
       - ./.cache:/cache
-      - ${JELLYFIN_MOVIES_VOLUME}:/Films
-      - ${JELLYFIN_TV_VOLUME}:/TVShows
+      - ${MEDIA_MOVIES_PATH}:/Films
+      - ${MEDIA_SERIES_PATH}:/TVShows
+      - ${LOGS_BASE_PATH}/jellyfin/log:/config/log
+      - ${LOGS_BASE_PATH}/jellyfin/logs:/config/logs
+      - ${MEDIA_BASE_PATH}:/media/arr
+    # runtime: nvidia
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all # Or specify specific GPU UUIDs
+    #           capabilities: [gpu]
+    labels:
+      - homepage.group=Yolo
+      - homepage.name=Jellyfin
+      - homepage.icon=jellyfin.png
+      - homepage.href=http://http://192.168.68.110:8096/
+      - homepage.description=Media server
     restart: unless-stopped
