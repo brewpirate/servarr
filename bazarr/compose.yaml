@@ -1,15 +1,15 @@
 services:
   bazarr:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
     image: lscr.io/linuxserver/bazarr:latest
     container_name: bazarr_split
-    network_mode: "service:gluetun"
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
     volumes:
       - ./config:/config
-      - ${BAZARR_MEDIA}:/data/media
+      - ${LOGS_BASE_PATH}/bazarr:/config/log
+      - ${MEDIA_MOVIES_PATH}:/movies              #optional
+      - ${MEDIA_SERIES_PATH}:/tv                  #optional
     depends_on:
       gluetun:
         condition: service_healthy

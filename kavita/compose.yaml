@@ -1,15 +1,22 @@
 services:
   kavita:
-    image: linuxserver/kavita:latest 
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
+    image: lscr.io/linuxserver/kavita:latest
     container_name: kavita_split
-    network_mode: "service:gluetun"
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
     volumes:
-      - ./config:/kavita/config 
-      - ${KAVITA_EBOOKS}:/books 
-      - ${KAVITA_MANGA}:/manga
-      - ${KAVITA_COMICS}:/comics
+      - ./config:/config 
+      - ${MEDIA_BASE_PATH}:/data
+      - ${LOGS_BASE_PATH}/kavita:/config/logs
+      - ${MEDIA_EBOOKS_PATH}:/books 
+      - ${MEDIA_MANGA_PATH}:/manga
+      - ${MEDIA_COMICS_PATH}:/comics
+      - ${MEDIA_BASE_PATH}:/media/arr
+    labels:
+      - homepage.group=Media
+      - homepage.name=Kavita
+      - homepage.icon=kavita.png
+      - homepage.href=http://kavita_split:5000
+      - homepage.description=Reading Server
     restart: unless-stopped

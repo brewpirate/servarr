@@ -28,6 +28,12 @@
         href: http://localhost:6767
         description: companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements.
     
+    - Mylar:
+        icon: mylar.png
+        href: http://localhost:8090
+        description: Comic Book downloader
+    
+
 
 - Media:
     - Jellyfin:
@@ -42,6 +48,7 @@
 
     - Kavita:
         icon: kavita.png
+        # container: kavita_split
         href: http://localhost:5000
         description: Reading Server
 

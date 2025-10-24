@@ -1,0 +1,5 @@
+services:
+  arr-service:
+    network_mode: "service:gluetun"
+    env_file:
+      - .env.global

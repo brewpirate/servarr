@@ -1,16 +1,16 @@
 services:
   jackett:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
     image: lscr.io/linuxserver/jackett:latest
     container_name: jackett_split
-    network_mode: "service:gluetun"
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
       - AUTO_UPDATE=${AUTO_UPDATE}
     volumes:
       - ./config:/config
-      - ${QBITTORRENT_DOWNLOADS_VOLUME}:/downloads
+      - ${DOWNLOAD_TORRENT_PATH}:/downloads
+      - ${LOGS_BASE_PATH}/jackett:/config/Jackett/log.txt
     depends_on:
         gluetun:
           condition: service_healthy

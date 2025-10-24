@@ -1,41 +1,14 @@
 .env
 
-# TODO: Update paths
 gluetun/data/**
 
-homepage/config/logs/
-
-# qbittorrent
-qbittorrent/config/**
-
-bazarr/config/** 
-# bazarr/config/backup/
-# bazarr/config/cache/
-# bazarr/config/log/
-# bazarr/config/restore/
-
-prowlarr/config/**
-
-radarr/config/**
-
-sonarr/config/** 
-
-jackett/config/** 
-
-sabnzbd/config/**
-
-overseerr/config/**
-
-jellyseerr/config/**
-
 jellyfin/.cache/**
-jellyfin/config/**
 
-lidarr/config/**
+configarr/dockerrepos/** 
 
-kavita/config/**
+# Ignore Service config dir
+**/config/**
 
-pinchflat/config/**
 
 
 # Allow .gitignore

@@ -2,6 +2,9 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/settings/
 
-providers:
-  openweathermap: openweathermapapikey
-  weatherapi: weatherapiapikey
+headerStyle: boxed
+color: zinc
+
+# providers:
+#   openweathermap: openweathermapapikey
+#   weatherapi: weatherapiapikey

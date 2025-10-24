@@ -1,15 +1,16 @@
 services:
   sabnzbd:
-    image: linuxserver/sabnzbd:latest
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
+    image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd_split
-    network_mode: service:gluetun
-    environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
     volumes:
       - ./config:/config
-      - ${SABNZBD_DOWNLOADS}:/downloads
+      - ${DOWNLOAD_NZBD_PATH}:/downloads
+      - ${DOWNLOAD_NZBD_PATH}/incomplete:/incomplete-downloads 
+      - ${LOGS_BASE_PATH}/sabnzbd:/config/logs
+      - ${MEDIA_BASE_PATH}:/media/arr
     depends_on:
       gluetun:
         condition: service_healthy

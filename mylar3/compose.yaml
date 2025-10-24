@@ -1,0 +1,20 @@
+services:
+  mylar3:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
+    image: lscr.io/linuxserver/mylar3:latest
+    container_name: mylar3
+    volumes:
+      - ./config:/config
+      - ${LOGS_BASE_PATH}/mylar:/config/mylar/logs
+      - ${MEDIA_COMICS_PATH}:/comics
+      - ${DOWNLOAD_COMICS_PATH}/comics:/downloads
+      - ${MEDIA_BASE_PATH}:/media/arr
+    labels:
+      - homepage.group=Media
+      - homepage.name=Mylar
+      - homepage.icon=mylar.png
+      - homepage.href=http://localhost:8090/
+      - homepage.description=Comic Book downloader 
+    restart: unless-stopped

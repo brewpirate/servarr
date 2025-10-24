@@ -1,12 +1,13 @@
 services:
   jellyseerr:
+    extends:
+      file: ../service.compose.yaml
+      service: arr-service
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseerr_split
-    network_mode: "service:gluetun"
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
+      - LOG_LEVEL=debug
     volumes:
       - ./config:/app/config
+      - ${LOGS_BASE_PATH}/jellyseerr:/app/config/logs
     restart: unless-stopped
