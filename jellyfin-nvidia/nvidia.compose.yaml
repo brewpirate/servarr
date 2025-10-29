@@ -1,30 +1,28 @@
 services:
-  jellyfin:
+  jellyfin-nvidia:
     extends:
       file: ../service.compose.yaml
       service: arr-service
-    image: jellyfin/jellyfin:latest
-    container_name: jellyfin_split
+    image: lscr.io/linuxserver/jellyfin:latest
+    container_name: jellyfin_nvidia
     user: root
     environment:
-      - NVIDIA_VISIBLE_DEVICES=all 
+      NVIDIA_VISIBLE_DEVICES: all 
+      NVIDIA_DRIVER_CAPABILITIES: all
     #   - JELLYFIN_PublishedServerUrl=
     volumes:
       - ./config:/config
-      - ./.cache:/cache
       - ${MEDIA_MOVIES_PATH}:/Films
       - ${MEDIA_SERIES_PATH}:/TVShows
-      - ${LOGS_BASE_PATH}/jellyfin/log:/config/log
-      - ${LOGS_BASE_PATH}/jellyfin/logs:/config/logs
       - ${MEDIA_BASE_PATH}:/media/arr
     # runtime: nvidia
-    # deploy:
-    #   resources:
-    #     reservations:
-    #       devices:
-    #         - driver: nvidia
-    #           count: all # Or specify specific GPU UUIDs
-    #           capabilities: [gpu]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all # Or specify specific GPU UUIDs
+              capabilities: [gpu]
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.jellyfin.entrypoints=web"

@@ -10,6 +10,16 @@ services:
       - ${LOGS_BASE_PATH}/lidarr:/config/logs
       - ${MEDIA_MUSIC_PATH}:/music
       - ${DOWNLOAD_MUSIC_PATH}:/downloads
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.lidarr.entrypoints=web"
+      - "traefik.http.routers.lidarr.rule=Host(`lidarr.servarr.local`)"
+      - "traefik.http.services.lidarr.loadbalancer.server.port=8686"
+      - homepage.group=Arr
+      - homepage.name=Lidarr
+      - homepage.icon=lidarr.png
+      - homepage.href=http://lidarr.servarr.local/
+      - homepage.description= Music collection manager for Usenet and BitTorrent users. 
     depends_on:
       gluetun:
         condition: service_healthy

@@ -12,9 +12,13 @@ services:
       - ${DOWNLOAD_COMICS_PATH}/comics:/downloads
       - ${MEDIA_BASE_PATH}:/media/arr
     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mylar.entrypoints=web"
+      - "traefik.http.routers.mylar.rule=Host(`mylar.servarr.local`)"
+      - "traefik.http.services.mylar.loadbalancer.server.port=8090"
       - homepage.group=Media
       - homepage.name=Mylar
       - homepage.icon=mylar.png
-      - homepage.href=http://localhost:8090/
+      - homepage.href=http://mylar.servarr.local/
       - homepage.description=Comic Book downloader 
     restart: unless-stopped

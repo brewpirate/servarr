@@ -1,0 +1,28 @@
+---
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/settings/
+
+headerStyle: boxed
+color: slate
+
+background: 
+  image: https://images.unsplash.com/photo-1590880449155-b54f958ce314
+  blur: sm
+  brightness: 90
+  opacity: 60
+
+# base: http://192.168.68.110:3000/
+showStats: true
+statusStyle: "dot"
+
+# providers:
+#   openweathermap: openweathermapapikey
+#   weatherapi: weatherapiapikey
+
+layout:
+  Arr:
+    icon: mdi-pirate-#FFFFFF
+  Media:
+    icon: mdi-multimedia-#FFFFFF
+  Utils:
+    icon: mdi-tools-#FFFFFF

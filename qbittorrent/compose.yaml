@@ -7,17 +7,27 @@
       container_name: qbittorrent
       environment:
         - WEBUI_PORT=8085
-        # - TORRENTING_PORT=6881
+        - TORRENTING_PORT=6881
       volumes:
         - ./config:/config
         - ${DOWNLOAD_TORRENT_PATH}:/downloads
         - ${MEDIA_BASE_PATH}:/media/arr
         - ${LOGS_BASE_PATH}/qbittorrent:/config/qBittorrent/logs
-      # healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
-      #   test: "curl -sf ${HEALTH_CHECK_URL}  || exit 1"
-      #   interval: 1m
-      #   timeout: 10s
-      #   retries: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.qbittorrent.entrypoints=web"
+        - "traefik.http.routers.qbittorrent.rule=Host(`qbit.servarr.local`)"
+        - "traefik.http.services.qbittorrent.loadbalancer.server.port=8085"
+        - homepage.group=Utils
+        - homepage.name=qbittorrent
+        - homepage.icon=qbittorrent.png
+        - homepage.href=http://qbit.servarr.local/
+        - homepage.description=an open-source software alternative to µTorrent.
+      healthcheck: # https://github.com/qdm12/gluetun/issues/641#issuecomment-933856220
+        test: "curl -sf ${HEALTH_CHECK_URL}  || exit 1"
+        interval: 1m
+        timeout: 10s
+        retries: 1
       depends_on:
         gluetun:
           condition: service_healthy

@@ -9,6 +9,16 @@ services:
       - ./config:/config
       - ${MEDIA_MOVIES_PATH}:/data
       - ${LOGS_BASE_PATH}/radarr:/config/logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.radarr.entrypoints=web"
+      - "traefik.http.routers.radarr.rule=Host(`${HOST_SABNZBD_URL}`)"
+      - "traefik.http.services.radarr.loadbalancer.server.port=7878"
+      - homepage.group=Arr
+      - homepage.name=Radarr
+      - homepage.icon=radarr.png
+      - homepage.href=http://#{HOST_RADARR_URL}}/
+      - homepage.description=See all your upcoming movies in one convenient location. 
     depends_on:
       gluetun:
         condition: service_healthy

@@ -3,10 +3,10 @@ include:
   - gluetun/compose.yaml
   - qbittorrent/compose.yaml  
   - homepage/compose.yaml
-  - jackett/compose.yaml
   - sabnzbd/compose.yaml
   - bazarr/compose.yaml
-  - jellyfin/compose.yaml
+  - jellyfin-nvidia/nvidia.compose.yaml
+  # - jellyfin/compose.yaml
   - jellyseerr/compose.yaml
   - lidarr/compose.yaml
   - prowlarr/compose.yaml
@@ -14,7 +14,29 @@ include:
   - sonarr/compose.yaml
   - kavita/compose.yaml
   - pinchflat/compose.yaml
-  - configarr/compose.yaml
+  # - configarr/compose.yaml
   - mylar3/compose.yaml
+  # - nginx-proxy-manager/compose.yaml
+  - traefik/compose.yaml
+  - tdarr/tdarr-compose.yaml
+
   
 name: servarr-split
+
+# volumes:
+#   arr-service-logs:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       o: bind
+#       device: ${LOGS_BASE_PATH}
+
+#   user-configs:
+#     driver: local
+#     driver_opts:
+#       type: none
+#       o: bind
+#       device: ../user
+networks:
+  proxied:
+    driver: bridge

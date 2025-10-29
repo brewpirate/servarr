@@ -10,6 +10,16 @@ services:
       - ${LOGS_BASE_PATH}/bazarr:/config/log
       - ${MEDIA_MOVIES_PATH}:/movies              #optional
       - ${MEDIA_SERIES_PATH}:/tv                  #optional
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bazarr.entrypoints=web"
+      - "traefik.http.routers.bazarr.rule=Host(`bazarr.servarr.local`)"
+      - "traefik.http.services.bazarr.loadbalancer.server.port=6767"
+      - homepage.group=Arr
+      - homepage.name=Bazarr
+      - homepage.icon=bazarr.png
+      - homepage.href=http://bazarr.servarr.local/
+      - homepage.description=Companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements.
     depends_on:
       gluetun:
         condition: service_healthy

@@ -1,15 +1,31 @@
 services:
   homepage:
-    extends:
-      file: ../service.compose.yaml
-      service: arr-service
+    # extends:
+    #   file: ../service.compose.yaml
+    #   service: arr-service
     image: ghcr.io/gethomepage/homepage:latest
-    container_name: homepage_split
+    container_name: homepage
+    network_mode: "service:gluetun"
     user: root 
     environment:
+      # - LOG_LEVEL=info
+      - TZ=America/Chicago
       - HOMEPAGE_ALLOWED_HOSTS=*
+    labels:
+      traefik.enable: "true"
+      # traefik.docker.network: "proxied"
+      traefik.http.routers.homepage.entrypoints: "web"
+      traefik.http.routers.homepage.rule: "Host(`start.servarr.local`)"
+      # traefik.http.routers.homepage.service: "homepage"
+      traefik.http.services.homepage.loadbalancer.server.port: "3000"
     volumes:
-      - ./config:/app/config
-      - /var/run/docker.sock:/var/run/docker.sock     # (optional) For docker integrations
-      - ${LOGS_BASE_PATH}/homepage:/app/config/logs
+      - ${CONFIG_BASE_PATH}/homepage:/app/config
+      - ${USER_BASE_PATH}/homepage/settings.yaml:/app/config/settings.yaml
+      - ${USER_BASE_PATH}/homepage/services.yaml:/app/config/services.yaml
+      # - ${LOGS_BASE_PATH}/homepage:/app/config/logs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    # ports: 
+    #   - 3000:3000 # homepage
+    # networks:
+    #   - proxied 
     restart: unless-stopped

@@ -1,0 +1,35 @@
+services:
+  swag:
+    image: lscr.io/linuxserver/swag:latest
+    container_name: swag
+    cap_add:
+      - NET_ADMIN
+    env_file:
+      - ../.env.global
+    environment:
+    #   - PUID=1000
+    #   - PGID=1000
+    #   - TZ=Etc/UTC
+      - URL=zombiecartel.com
+      - VALIDATION=http
+      # - DOCKER_MODS=linuxserver/mods:universal-package-install
+      - DOCKER_MODS=linuxserver/mods:swag-dashboard
+      # - SUBDOMAINS=servarr, #optional
+    #   - CERTPROVIDER= #optional
+    #   - DNSPLUGIN=cloudflare #optional
+    #   - PROPAGATION= #optional
+    #   - EMAIL= #optional
+    #   - ONLY_SUBDOMAINS=false #optional
+    #   - EXTRA_DOMAINS= #optional
+    #   - STAGING=false #optional
+    #   - DISABLE_F2B= #optional
+      - SWAG_AUTORELOAD= #optional
+    #   - SWAG_AUTORELOAD_WATCHLIST= #optional
+    volumes:
+      - ${CONFIG_BASE_PATH}/SWAG:/config
+    ports:
+      - 443:443
+      - 81:81
+      - 88:80 #optional
+      - 443:443/udp #optional
+    restart: unless-stopped
