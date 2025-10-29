@@ -5,9 +5,19 @@ services:
       service: arr-service
     image: fallenbagel/jellyseerr:latest
     container_name: jellyseerr_split
-    environment:
-      - LOG_LEVEL=debug
+    # environment:
+    #   - LOG_LEVEL=debug
     volumes:
       - ./config:/app/config
       - ${LOGS_BASE_PATH}/jellyseerr:/app/config/logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.jellyseerr.entrypoints=web"
+      - "traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.servarr.local`)"
+      - "traefik.http.services.jellyseerr.loadbalancer.server.port=5055"
+      - homepage.group=Media
+      - homepage.name=Jellyseerr
+      - homepage.icon=jellyseerr.png
+      - homepage.href=http://jellyseerr.servarr.local/
+      - homepage.description=Manage requests for your media library
     restart: unless-stopped

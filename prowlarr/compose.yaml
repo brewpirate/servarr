@@ -8,6 +8,16 @@ services:
     volumes:
       - ./config:/config
       - ${LOGS_BASE_PATH}/prowlarr:/config/logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prowlarr.entrypoints=web"
+      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.servarr.local`)"
+      - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
+      - homepage.group=Arr
+      - homepage.name=Prowlarr
+      - homepage.icon=prowlarr.png
+      - homepage.href=http://prowlarr.servarr.local/
+      - homepage.description=The Ultimate Indexer Manager.
     depends_on:
       gluetun:
         condition: service_healthy

@@ -12,6 +12,16 @@ services:
       - ./config:/config
       - ${DOWNLOAD_YOUTUBE_PATH}:/downloads
       - ${LOGS_BASE_PATH}/pinchflat:/config/logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pinchflat.entrypoints=web"
+      - "traefik.http.routers.pinchflat.rule=Host(`pinchflat.servarr.local`)"
+      - "traefik.http.services.pinchflat.loadbalancer.server.port=8945"
+      - homepage.group=Media
+      - homepage.name=Pinchflat
+      - homepage.icon=pinchflat.png
+      - homepage.href=http://pinchflat.servarr.local/
+      - homepage.description=Your next YouTube media manager
     depends_on:
       gluetun:
         condition: service_healthy

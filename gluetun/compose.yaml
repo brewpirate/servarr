@@ -16,9 +16,16 @@ services:
       - 8388:8388/udp # Shadowsocks
     volumes:
       - ./data:/gluetun
-    healthcheck:
-      test: ping -c 1 www.google.com || exit 1
-      interval: 20s
-      timeout: 10s
-      retries: 5
+    # healthcheck:
+    #   test: ping -c 1 www.google.com || exit 1
+    #   interval: 20s
+    #   timeout: 10s
+    #   retries: 5
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxied"
+    #   - "traefik.http.routers.homepage.service=gluetun-servarr-split"
+    #   - "traefik.http.routers.homepage.rule=Host(`start.servarr.local`)"
+    networks:
+      - proxied 
     restart: unless-stopped

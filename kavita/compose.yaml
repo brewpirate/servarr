@@ -14,9 +14,13 @@ services:
       - ${MEDIA_COMICS_PATH}:/comics
       - ${MEDIA_BASE_PATH}:/media/arr
     labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.kavita.entrypoints=web"
+      - "traefik.http.routers.kavita.rule=Host(`kavita.servarr.local`)"
+      - "traefik.http.services.kavita.loadbalancer.server.port=5000"
       - homepage.group=Media
       - homepage.name=Kavita
       - homepage.icon=kavita.png
-      - homepage.href=http://kavita_split:5000
+      - homepage.href=http://kavita.servarr.local/
       - homepage.description=Reading Server
     restart: unless-stopped

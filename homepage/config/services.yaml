@@ -2,73 +2,80 @@
 # For configuration options and examples, please see:
 # https://gethomepage.dev/configs/services/
 
-- Arr:
-    - Prowlarr:
-        icon: prowlarr.png
-        href: http://localhost:9696
-        description: The Ultimate Indexer Manager.
+# - Arr:
+    # - Prowlarr:
+    #     icon: prowlarr.png
+    #     href: http://192.168.68.110:9696
+    #     description: 
+    #     showStats: true
+    #     statusStyle: "dot"
 
-    - Radarr:
-        icon: radarr.png
-        href: http://localhost:7878
-        description: See all your upcoming movies in one convenient location. 
+    # - Radarr:
+    #     icon: radarr.png
+    #     href: http://192.168.68.110:7878
+    #     description: 
 
-    - Sonarr:
-        icon: sonarr.png
-        href: http://localhost:8989
-        description: Internet PVR for Usenet and Torrents. 
+    # - Sonarr:
+    #     icon: sonarr.png
+    #     href: http://192.168.68.110:8989
+    #     description: 
 
-    - Lidarr:
-        icon: lidarr.png
-        href: http://localhost:8686
-        description: Music collection manager for Usenet and BitTorrent users. 
+    # - Lidarr:
+    #     icon: lidarr.png
+    #     href: http://192.168.68.110:8686
+    #     description: Music collection manager for Usenet and BitTorrent users. 
 
-    - Bazarr:
-        icon: bazarr.png
-        href: http://localhost:6767
-        description: companion application to Sonarr and Radarr that manages and downloads subtitles based on your requirements.
+    # - Bazarr:
+    #     icon: bazarr.png
+    #     href: http://192.168.68.110:6767
+    #     description:
     
-    - Mylar:
-        icon: mylar.png
-        href: http://localhost:8090
-        description: Comic Book downloader
+    # - Mylar:
+    #     icon: mylar.png
+    #     href: http://192.168.68.110:8090
+    #     description: Comic Book downloader
     
 
 
-- Media:
-    - Jellyfin:
-        icon: jellyfin.png
-        href: http://localhost:8096
-        description: Media solution that puts you in control of your media. Stream to any device from your own server, with no strings attached.
+# - Media:
+    # - Jellyfin:
+    #     icon: jellyfin.png
+    #     href: http://192.168.68.110:8096
+    #     description: 
     
-    - Jellyseerr:
-        icon: jellyseerr.png
-        href: http://localhost:5055
-        description: Manage requests for your media library
+    # - Jellyseerr:
+    #     icon: jellyseerr.png
+    #     href: http://192.168.68.110:5055
+    #     description: 
 
-    - Kavita:
-        icon: kavita.png
-        # container: kavita_split
-        href: http://localhost:5000
-        description: Reading Server
+    # - Kavita:
+    #     icon: kavita.png
+    #     # container: kavita_split
+    #     href: http://192.168.68.110:5000
+    #     description: Reading Server
 
-    - Pinchflat:
-        icon: pinchflat.png
-        href: http://localhost:8945
-        description: Your next YouTube media manager
+    # - Pinchflat:
+    #     icon: pinchflat.png
+    #     href: http://192.168.68.110:8945
+    #     description:
 
-- Utils:
-    - qbittorrent:
-        icon: qbittorrent.png
-        href: http://localhost:8085
-        description: an open-source software alternative to µTorrent.
+# - Utils:
+    # - qbittorrent:
+    #     icon: qbittorrent.png
+    #     href: http://192.168.68.110:8085
+    #     description: 
 
-    - Jackett:
-        icon: jackett.png
-        href: http://localhost:9117
-        description: API Support for your favorite torrent trackers
+    # - Jackett:
+    #     icon: jackett.png
+    #     href: http://192.168.68.110:9117
+    #     description: API Support for your favorite torrent trackers
 
-    - SABnzbd:
-        icon: sabnzbd.png
-        href: http://localhost:8080
-        description: The free and easy binary newsreader
+    # - SABnzbd:
+    #     icon: sabnzbd.png
+    #     href: http://192.168.68.110:8080
+    #     description: The free and easy binary newsreader
+    #     showStats: true
+    #     statusStyle: "dot"
+    #     # siteMonitor: http://192.168.68.110:8080
+    #     # server: servarr-split
+    #     # container: sabnzbd_split

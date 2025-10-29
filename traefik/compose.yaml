@@ -1,0 +1,16 @@
+  services:
+    traefik:
+      image: "traefik:latest"
+      container_name: traefik
+      command:
+        - "--log.level=DEBUG"
+        - "--api.insecure=true"
+        - "--providers.docker=true"
+        - "--entryPoints.web.address=:80"
+      ports:
+        - "80:80"
+        - "8089:8080"
+      volumes:
+        - "/var/run/docker.sock:/var/run/docker.sock"
+      networks:
+        - proxied

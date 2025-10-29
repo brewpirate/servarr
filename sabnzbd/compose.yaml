@@ -1,16 +1,33 @@
 services:
   sabnzbd:
-    extends:
-      file: ../service.compose.yaml
-      service: arr-service
+    # extends:
+    #   file: ../service.compose.yaml
+    #   service: arr-service
     image: lscr.io/linuxserver/sabnzbd:latest
     container_name: sabnzbd_split
+    network_mode: "service:gluetun"
+    user: root
+    environment:
+      - PUID=0
+      - PGID=0
+      - TZ=America/Chicago
     volumes:
       - ./config:/config
       - ${DOWNLOAD_NZBD_PATH}:/downloads
       - ${DOWNLOAD_NZBD_PATH}/incomplete:/incomplete-downloads 
       - ${LOGS_BASE_PATH}/sabnzbd:/config/logs
       - ${MEDIA_BASE_PATH}:/media/arr
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sabnzbd.entrypoints=web"
+      - "traefik.http.routers.sabnzbd.rule=Host(`sabnzbd.servarr.local`)"
+      - "traefik.http.services.sabnzbd.loadbalancer.server.port=8080"
+      - homepage.group=Utils
+      - homepage.name=SABnzbd
+      - homepage.icon=sabnzbd.png
+      - homepage.showstats=true
+      - homepage.href=http://sabnzbd.servarr.local/
+      - homepage.description=The free and easy binary newsreader
     depends_on:
       gluetun:
         condition: service_healthy

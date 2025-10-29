@@ -9,7 +9,12 @@ configarr/dockerrepos/**
 # Ignore Service config dir
 **/config/**
 
-
+nginx-proxy-manager/data/** 
+nginx-proxy-manager/letsencrypt/** 
+tdarr/node/** 
+tdarr/server/** 
+tdarr/transcode_cache/**
+tdarr/configs/** 
 
 # Allow .gitignore
 !**/.gitkeep

@@ -9,6 +9,16 @@ services:
       - ./config:/config
       - ${MEDIA_SERIES_PATH}:/tv
       - ${LOGS_BASE_PATH}/sonarr:/config/logs
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sonarr.entrypoints=web"
+      - "traefik.http.routers.sonarr.rule=Host(`sonarr.servarr.local`)"
+      - "traefik.http.services.sonarr.loadbalancer.server.port=8989"
+      - homepage.group=Arr
+      - homepage.name=Sonarr
+      - homepage.icon=sonarr.png
+      - homepage.href=http://sonarr.servarr.local/
+      - homepage.description=Internet PVR for Usenet and Torrents. 
     depends_on:
       gluetun:
         condition: service_healthy
